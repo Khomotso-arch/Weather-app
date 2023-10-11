@@ -33,7 +33,7 @@ function displayForecast() {
     forecastHTML =
       forecastHTML +
       `
-      <div class="col-2">
+      <div class="col">
           <div class="weekday">${day}</div>
           <div class="weekday-weather">
             <span class="weeday-maximum">31&deg</span> /
