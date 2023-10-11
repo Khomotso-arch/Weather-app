@@ -26,44 +26,39 @@ function formatDate(date) {
 function convertToFahrenheit(event) {
   event.preventDefault();
   let temperature = document.querySelector("#current-temperature");
-  temperature.innerHTML = 64;
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 2;
+  temperature.innerHTML = Math.round(fahrenheitTemperature);
 }
 
 function convertToCelsius(event) {
   event.preventDefault();
   let temperature = document.querySelector("#current-temperature");
-  temperature.innerHTML = 18;
+  temperature.innerHTML = Math.round(celsiusTemperature);
 }
-
-let fahrenheitLink = document.querySelector("#fahrenheit");
-fahrenheitLink.addEventListener("click", convertToFahrenheit);
-
-let celsiusLink = document.querySelector("#celsius");
-celsiusLink.addEventListener("click", convertToCelsius);
 
 function displayWeatherCondition(response) {
   console.log(response);
-  document.querySelector("#city").innerHTML = response.data.city;
-  document.querySelector("#current-temperature").innerHTML = Math.round(
-    response.data.temperature.current
+  let city = document.querySelector("#city");
+  let currentTemp = document.querySelector("#current-temperature");
+  let humidity = document.querySelector("#humidity");
+  let windspeed = document.querySelector("#wind");
+  let weatherCondition = document.querySelector("#weather");
+  let currentWeatherIcon = document.querySelector("#current-weather-icon");
+
+  let currentWeatherIconAlt = document.querySelector("#current-weather-icon");
+
+  celsiusTemperature = response.data.temperature.current;
+
+  city.innerHTML = response.data.city;
+  currentTemp.innerHTML = Math.round(celsiusTemperature);
+  humidity.innerHTML = `${response.data.temperature.humidity}%`;
+  windspeed.innerHTML = `${Math.round(response.data.wind.speed)}km/h`;
+  weatherCondition.innerHTML = response.data.condition.description;
+  currentWeatherIcon.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
-  document.querySelector(
-    "#humidity"
-  ).innerHTML = `${response.data.temperature.humidity}%`;
-  document.querySelector("#wind").innerHTML = `${Math.round(
-    response.data.wind.speed
-  )}km/h`;
-  document.querySelector("#weather").innerHTML =
-    response.data.condition.description;
-  document
-    .querySelector("#current-weather-icon")
-    .setAttribute(
-      "src",
-      `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
-    );
-  document
-    .querySelector("#current-weather-icon")
-    .setAttribute("alt", response.data.condition.description);
+  currentWeatherIconAlt.setAttribute(response.data.conition.description);
 }
 
 function searchCity(city) {
@@ -98,5 +93,13 @@ searchForm.addEventListener("submit", handleSubmit);
 
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getCurrentLocation);
+
+let fahrenheitLink = document.querySelector("#fahrenheit");
+fahrenheitLink.addEventListener("click", convertToFahrenheit);
+
+let celsiusLink = document.querySelector("#celsius");
+celsiusLink.addEventListener("click", convertToCelsius);
+
+let celsiusTemperature = null;
 
 searchCity("Pretoria");
