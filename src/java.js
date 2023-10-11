@@ -23,6 +23,34 @@ function formatDate(date) {
   return `${day} ${hours}:${minutes}`;
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let days = ["Wed", "Thur", "Fri", "Sat", "Sun"];
+
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class="col-2">
+          <div class="weekday">${day}</div>
+          <div class="weekday-weather">
+            <span class="weeday-maximum">31&deg</span> /
+            <span class="weekday-minimum">12&deg</span>
+          </div>
+          <div class="weekday-weather-emoji">
+            <img
+              src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-day.png"
+            />
+          </div>
+        </div>
+      `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function convertToFahrenheit(event) {
   event.preventDefault();
   let temperature = document.querySelector("#current-temperature");
@@ -58,7 +86,10 @@ function displayWeatherCondition(response) {
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
-  currentWeatherIconAlt.setAttribute(response.data.conition.description);
+  currentWeatherIconAlt.setAttribute(
+    "alt",
+    response.data.condition.description
+  );
 }
 
 function searchCity(city) {
@@ -103,3 +134,4 @@ celsiusLink.addEventListener("click", convertToCelsius);
 let celsiusTemperature = null;
 
 searchCity("Pretoria");
+displayForecast();
