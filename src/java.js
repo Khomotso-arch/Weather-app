@@ -55,6 +55,15 @@ function displayWeatherCondition(response) {
   )}km/h`;
   document.querySelector("#weather").innerHTML =
     response.data.condition.description;
+  document
+    .querySelector("#current-weather-icon")
+    .setAttribute(
+      "src",
+      `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+    );
+  document
+    .querySelector("#current-weather-icon")
+    .setAttribute("alt", response.data.condition.description);
 }
 
 function searchCity(city) {

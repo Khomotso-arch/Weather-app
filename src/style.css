@@ -77,11 +77,9 @@ footer {
 }
 
 .wind {
-  margin-left: -60px;
   margin-top: 55px;
 }
 .humidity {
-  margin-left: -80px;
   margin-top: 0;
 }
 .wind-speed,
@@ -90,19 +88,18 @@ footer {
   color: #596e79;
   font-weight: 400;
 }
-.wind-speed {
-  margin-left: -60px;
+
+.humidity-percent.wind-speed.humidity.wind {
+  margin-left: 0 auto;
 }
-.humidity-percent {
-  margin-left: -52px;
-}
-.today-emoji {
-  font-size: 150px;
-  margin-left: -70px;
+#current-weather-icon {
+  height: 150px;
+
+  margin-left: 0 auto;
   transition: all 250ms ease-in-out;
 }
-.today-emoji:hover {
-  font-size: 160px;
+#current-weather-icon:hover {
+  height: 155px;
   cursor: pointer;
 }
 .row-cols-5 {
