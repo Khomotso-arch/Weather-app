@@ -31,6 +31,9 @@ button {
 button:hover {
   font-size: 18px;
 }
+footer {
+  max-width: 55%;
+}
 .container {
   font-family: "Roboto", sans-serif;
   background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
