@@ -84,7 +84,8 @@ footer {
 }
 .wind-speed,
 .humidity-percent,
-.weekday-weather {
+.weekday-maximum,
+.weekday-minimum {
   color: #596e79;
   font-weight: 400;
 }
@@ -92,19 +93,10 @@ footer {
 .humidity-percent.wind-speed.humidity.wind {
   margin-left: 0 auto;
 }
-#current-weather-icon {
-  height: 150px;
 
-  margin-left: 0 auto;
-  transition: all 250ms ease-in-out;
-}
-#current-weather-icon:hover {
-  height: 155px;
-  cursor: pointer;
-}
 .weekday-forcast {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 .weekday-weather-emoji {
   height: 45px;
@@ -114,5 +106,16 @@ footer {
 .weekday-weather-emoji:hover {
   height: 50px;
 
+  cursor: pointer;
+}
+
+#current-weather-icon {
+  height: 150px;
+
+  margin-left: 0 auto;
+  transition: all 250ms ease-in-out;
+}
+#current-weather-icon:hover {
+  height: 155px;
   cursor: pointer;
 }

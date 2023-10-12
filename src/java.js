@@ -31,6 +31,7 @@ function formatDay(timestamp) {
 }
 
 function displayForecast(response) {
+  console.log(response.data.daily);
   let forecast = response.data.daily;
 
   let forecastElement = document.querySelector("#forecast");
@@ -40,15 +41,15 @@ function displayForecast(response) {
       forecastHTML =
         forecastHTML +
         `
-         <div class="col-2">
-        <div class="weekday>${formatDay(forecastDay.time)}</div>
+         <div class="col">
+        <div class="weekday">${formatDay(forecastDay.time)}</div>
         <div class="weekday-weather">
-          <span class="weekday-maximum">${Math.round(
+          <span class="weekday-maximum"><strong>${Math.round(
             forecastDay.temperature.maximum
-          )}°</span> |
+          )}°C</strong></span> |
           <span class="weekday-minimum">${Math.round(
             forecastDay.temperature.minimum
-          )}°</span>
+          )}°C</span>
         </div>
         <div class="weekday-weather-emoji">
         <img
@@ -98,6 +99,8 @@ function displayWeatherCondition(response) {
     "alt",
     response.data.condition.description
   );
+
+  getForecast(response.data.coordinates);
 }
 
 function searchCity(city) {
