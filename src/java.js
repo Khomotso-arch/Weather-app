@@ -23,32 +23,54 @@ function formatDate(date) {
   return `${day} ${hours}:${minutes}`;
 }
 
-function displayForecast() {
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+
   let forecastElement = document.querySelector("#forecast");
-
-  let days = ["Wed", "Thur", "Fri", "Sat", "Sun"];
-
   let forecastHTML = `<div class="row">`;
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
-      <div class="col">
-          <div class="weekday">${day}</div>
-          <div class="weekday-weather">
-            <span class="weeday-maximum">31&deg</span> /
-            <span class="weekday-minimum">12&deg</span>
-          </div>
-          <div class="weekday-weather-emoji">
-            <img
-              src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-day.png"
-            />
-          </div>
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
+         <div class="col-2">
+        <div class="weather-forecast-date">${formatDate(
+          forecastDay.time * 1000
+        )}</div>
+        <img
+          src="${forecastDay.condition.icon_url}"
+          alt=""
+          width="42"
+        />
+        <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temperature-max"> ${Math.round(
+            forecastDay.temperature.maximum
+          )}° </span>
+          <span class="weather-forecast-temperature-min"> ${Math.round(
+            forecastDay.temperature.minimum
+          )}° </span>
         </div>
-      `;
+      </div>
+  `;
+    }
   });
+
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  let apiKey = "0o4cee02faabb46ata501b17c3ac5535";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&key=${apiKey}`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function convertToFahrenheit(event) {
@@ -65,7 +87,6 @@ function convertToCelsius(event) {
 }
 
 function displayWeatherCondition(response) {
-  console.log(response);
   let city = document.querySelector("#city");
   let currentTemp = document.querySelector("#current-temperature");
   let humidity = document.querySelector("#humidity");
@@ -80,7 +101,7 @@ function displayWeatherCondition(response) {
   city.innerHTML = response.data.city;
   currentTemp.innerHTML = Math.round(celsiusTemperature);
   humidity.innerHTML = `${response.data.temperature.humidity}%`;
-  windspeed.innerHTML = `${Math.round(response.data.wind.speed)}km/h`;
+  windspeed.innerHTML = `${Math.round(response.data.wind.speed)}m/s`;
   weatherCondition.innerHTML = response.data.condition.description;
   currentWeatherIcon.setAttribute(
     "src",
@@ -134,4 +155,3 @@ celsiusLink.addEventListener("click", convertToCelsius);
 let celsiusTemperature = null;
 
 searchCity("Pretoria");
-displayForecast();
