@@ -23,32 +23,31 @@
     <div class="container">
       <h1 id="city">Pretoria</h1>
       <h2 id="date"></h2>
-      <form id="city-form">
-        <input
-          type="search"
-          placeholder="Search for city"
-          class="city-search-input"
-          autofocus="on"
-          autocomplete="off"
-          id="city-search"
-        />
-        <input
-          type="submit"
-          value="search"
-          class="city-search"
-          id="search-text-input"
-        />
-      </form>
-      <button id="current-location-button">current location</button>
+      <div class="search-header">
+        <form id="city-form">
+          <input
+            type="search"
+            placeholder="Search for city"
+            class="city-search-input"
+            autofocus="on"
+            autocomplete="off"
+            id="city-search"
+          />
+          <input
+            type="submit"
+            value="search"
+            class="city-search"
+            id="search-text-input"
+          />
+        </form>
+        <button id="current-location-button">current location</button>
+      </div>
+
       <div class="container-text-center">
         <div class="row">
           <div class="col current-weather">
             <span id="current-temperature"></span>
-            <span class="units">
-              <a href="#" id="celsius">&degC</a>
-              |
-              <a href id="fahrenheit">&degF</a>
-            </span>
+            <span class="units" id="celsius"> °C </span>
 
             <div class="today-weather" id="weather"></div>
           </div>

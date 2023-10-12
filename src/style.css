@@ -7,6 +7,7 @@ h2 {
   font-size: 22px;
   color: #596e79;
   margin-left: 10px;
+  margin-bottom: 30px;
 }
 
 form {
@@ -42,11 +43,11 @@ footer {
   border: solid #596e79;
 }
 
-.current-weather {
-  font-size: 75px;
-  margin-top: 50px;
+#current-temperature {
+  font-size: 80px;
+
   color: #393e46;
-  margin-left: 30px;
+  margin-left: 40px;
 }
 .today-weather {
   font-size: 27px;
@@ -59,39 +60,35 @@ footer {
 .tempDivider {
   font-size: 30px;
 }
+
 .units {
   font-size: 28px;
   text-decoration: none;
-}
-#celsius,
-#fahrenheit {
-  text-decoration: none;
+  vertical-align: top;
 }
 
 .wind,
 .humidity,
 .weekday {
-  font-size: 25px;
+  font-size: 20px;
   color: #393e46;
   font-weight: 500;
 }
 
-.wind {
-  margin-top: 55px;
+.wind,
+.wind-speed,
+.humidity,
+.humidity-percent,
+.current-weather {
+  text-align: center;
 }
-.humidity {
-  margin-top: 0;
-}
+
 .wind-speed,
 .humidity-percent,
 .weekday-maximum,
 .weekday-minimum {
   color: #596e79;
   font-weight: 400;
-}
-
-.humidity-percent.wind-speed.humidity.wind {
-  margin-left: 0 auto;
 }
 
 .weekday-forcast {
@@ -110,8 +107,8 @@ footer {
 }
 
 #current-weather-icon {
-  height: 150px;
-
+  height: 170px;
+  text-align: center;
   margin-left: 0 auto;
   transition: all 250ms ease-in-out;
 }

@@ -31,7 +31,6 @@ function formatDay(timestamp) {
 }
 
 function displayForecast(response) {
-  console.log(response.data.daily);
   let forecast = response.data.daily;
 
   let forecastElement = document.querySelector("#forecast");
@@ -46,10 +45,10 @@ function displayForecast(response) {
         <div class="weekday-weather">
           <span class="weekday-maximum"><strong>${Math.round(
             forecastDay.temperature.maximum
-          )}°C</strong></span> |
+          )}°</strong></span> |
           <span class="weekday-minimum">${Math.round(
             forecastDay.temperature.minimum
-          )}°C</span>
+          )}°</span>
         </div>
         <div class="weekday-weather-emoji">
         <img
@@ -115,19 +114,6 @@ function handleSubmit(event) {
   searchCity(city);
 }
 
-function convertToFahrenheit(event) {
-  event.preventDefault();
-  let temperature = document.querySelector("#current-temperature");
-  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 2;
-  temperature.innerHTML = Math.round(fahrenheitTemperature);
-}
-
-function convertToCelsius(event) {
-  event.preventDefault();
-  let temperature = document.querySelector("#current-temperature");
-  temperature.innerHTML = Math.round(celsiusTemperature);
-}
-
 function searchLocation(position) {
   let apiKey = "0o4cee02faabb46ata501b17c3ac5535";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${position.coords.longitude}&lat=${position.coords.latitude}&key=${apiKey}&units=metric`;
@@ -148,13 +134,5 @@ searchForm.addEventListener("submit", handleSubmit);
 
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getCurrentLocation);
-
-let fahrenheitLink = document.querySelector("#fahrenheit");
-fahrenheitLink.addEventListener("click", convertToFahrenheit);
-
-let celsiusLink = document.querySelector("#celsius");
-celsiusLink.addEventListener("click", convertToCelsius);
-
-let celsiusTemperature = null;
 
 searchCity("Pretoria");
